@@ -21,38 +21,38 @@ public class UserController {
 	@Autowired
 	private UserRepo userRepo;
 
-	// Get all movies
+	// Get all users
 	@GetMapping("/")
 	public List<User> getAll() {
 		return userRepo.findAll();
 	}
 
-	// Get a movie by id
+	// Get a user by id
 	@GetMapping("/{id}")
 	public Optional<User> getById(@PathVariable int id) {
 		return userRepo.findById(id);
 	}
 
-	// Add a movie
+	// Add a user
 	@PostMapping("/")
 	public User addUser(@RequestBody User u) {
 		u = userRepo.save(u);
 		return u;
 	}
 
-	// Update a movie
+	// Update a user
 	@PutMapping("/")
 	public User updateUser(@RequestBody User u) {
 		u = userRepo.save(u);
 		return u;
 	}
 
-	// Delete a movie
+	// Delete a user
 	@DeleteMapping("/{id}")
 	public User deleteUser(@PathVariable int id) {
 		// Optional type will wrap a movie
 		Optional<User> u = userRepo.findById(id);
-		// isPresent() will return true if a movie was found
+		// isPresent() will return true if a user was found
 		if (u.isPresent()) {
 			userRepo.deleteById(id);
 		} else {
@@ -61,4 +61,15 @@ public class UserController {
 		return u.get();
 	}
 
+	// login via POST
+	@PostMapping("/login")
+	public Optional<User> login(@RequestBody User u) {
+		Optional<User> user = userRepo.findByUserNameAndPassword(u.getUsername(), u.getPassword());
+		if (user.isPresent()) {
+			return user;
+		} else {
+			System.out.println("Error - user not found");
+		}
+		return user;
+	}
 }

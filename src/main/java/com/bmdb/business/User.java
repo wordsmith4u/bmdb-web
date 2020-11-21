@@ -7,7 +7,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String username;
+	private String userName;
 	private String password;
 	private String firstName;
 	private String lastName;
@@ -19,11 +19,11 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, String firstName, String lastName, String phoneNumber,
+	public User(int id, String userName, String password, String firstName, String lastName, String phoneNumber,
 			String email, double collectionValue) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -41,11 +41,11 @@ public class User {
 	}
 
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -95,7 +95,6 @@ public class User {
 	public void setCollectionValue(double collectionValue) {
 		this.collectionValue = collectionValue;
 	}
-	
 	
 
 }
